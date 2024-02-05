@@ -64,7 +64,6 @@ body {
 .calc-button:last-child {
     background-color: #df974c;
     color: white;
-    margin-left: 1px;
 }
 .calc-button:last-child:hover {
     background-color: #dfb07e;
