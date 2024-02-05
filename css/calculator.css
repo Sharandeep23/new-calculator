@@ -15,6 +15,7 @@ body {
 }
 .wrapper {
     width: 400px;
+    border-radius: 5px;
     background-color: black;
     color: white;
     box-shadow: -10px 10px 0px rgba(33, 33, 33, 1), -20px 20px 0px rgba(33, 33, 33, 0.7), -30px 30px 0px rgba(33, 33, 33, 0.4), -40px 40px 0px rgba(33, 33, 33, 0.1);
@@ -62,7 +63,7 @@ body {
 .calc-button:last-child {
     background-color: #df974c;
     color: white;
-    margin: 0;
+    margin-right: 0;
     margin-left: 1px;
 }
 .calc-button:last-child:hover {
@@ -71,4 +72,11 @@ body {
 
 .calc-button:last-child:active {
     background-color: #dd8d37;
+}
+
+@media only screen and (max-width: 450px) {
+    .wrapper {
+        width: 300px;
+        box-shadow: 0px 9px 20px rgba(13, 38, 76, 0.19);
+    }
 }
