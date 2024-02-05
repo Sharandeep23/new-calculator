@@ -29,7 +29,6 @@ body {
 }
 .calc-buttons-row {
     display: flex;
-    justify-content: space-between;
     margin-bottom: 2px
 }
 .calc-button {
@@ -54,7 +53,6 @@ body {
 .triple {
     flex-basis: 76%;
 }
-
 
 .calc-buttons-row:last-child {
     margin: 0;
