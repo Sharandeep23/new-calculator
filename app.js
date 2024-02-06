@@ -33,8 +33,8 @@ function buttonClick(value) {
         let result = calculate(previousValue, operator, parseInt(screenValue));
         // convert num to string
         result = result.toString();
-        // Result is trimmed if it is equal or bigger than MAX_DIGIT
-        if (result.length >= MAX_DIGIT) {
+        // Result is trimmed if it is bigger than MAX_DIGIT
+        if (result.length > MAX_DIGIT) {
           result = result.slice(0, 15);
         }
 
