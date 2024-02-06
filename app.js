@@ -1,14 +1,22 @@
 const screen = document.querySelector('.screen');
 const buttons = document.querySelector('.calc-buttons');
-let currentValue = 0;
+let screenValue = '0';
+let operator;
+let previousValue = 0;
+const MAX_DIGIT = 15;
 
 buttons.addEventListener('click', function (e) {
-  const currentElementText = e.target.innerText;
+  buttonClick(e.target.innerText);
+});
 
-  if (parseInt(currentElementText) || parseInt(currentElementText) === 0) {
-    displayNumber(currentElementText);
-  } else {
-    switch (currentElementText) {
+function buttonClick(value) {
+  // For the numbers
+  if (parseInt(value) || parseInt(value) === 0) {
+    displayNumber(value);
+  }
+  // For other stuffs
+  else {
+    switch (value) {
       case 'C':
         clear();
         break;
@@ -16,45 +24,73 @@ buttons.addEventListener('click', function (e) {
         backspace();
         break;
       case '÷':
-        // dividing function
-        break;
       case '×':
-        // multiplication function
-        break;
       case '−':
-        // minus function
-        break;
       case '+':
-        // addition function
+        operator = value;
         break;
       case '=':
-        // equal function
-        break;
+        let result = calculate(previousValue, operator, parseInt(screenValue));
+        // convert num to string
+        result = result.toString();
+        // Result is trimmed if it is equal or bigger than MAX_DIGIT
+        if (result.length >= MAX_DIGIT) {
+          result = result.slice(0, 15);
+        }
+
+        screenValue = result;
+        displayValue(screenValue);
+        previousValue = 0;
+        operator = '';
     }
   }
-});
+}
+
+function calculate(operand1, operator, operand2) {
+  switch (operator) {
+    case '÷':
+      return operand1 / operand2;
+      break;
+    case '×':
+      return operand1 * operand2;
+      break;
+    case '−':
+      return operand1 - operand2;
+      break;
+    case '+':
+      return operand1 + operand2;
+  }
+}
 
 function displayNumber(value) {
-  if (currentValue === 0) {
-    screen.innerText = value;
+  if (screenValue === '0') {
+    screenValue = value;
+  } else if (screenValue.length === MAX_DIGIT) {
+    alert('Please use less numbers!');
+    return;
+  } else if (operator && !previousValue) {
+    previousValue = parseInt(screenValue);
+    screenValue = value;
   } else {
-    screen.innerText += value;
+    screenValue += value;
   }
-  //   setting the current value for calculations
-  currentValue = parseInt(screen.innerText);
+  displayValue(screenValue);
 }
 
 function clear() {
-  screen.innerText = 0;
-  currentValue = 0;
+  screenValue = '0';
+  displayValue(screenValue);
 }
 
 function backspace() {
-  if (currentValue === 0) return;
-  screen.innerText = screen.innerText.slice(0, -1);
+  if (screenValue === '0') return;
+  screenValue = screenValue.slice(0, -1);
   // For empty strings
-  if (screen.innerText === '') {
-    screen.innerText = '0';
+  if (screenValue === '') {
+    screenValue = '0';
   }
-  currentValue = parseInt(screen.innerText);
+  displayValue(screenValue);
+}
+function displayValue(value) {
+  screen.innerText = value;
 }
