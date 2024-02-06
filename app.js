@@ -66,7 +66,7 @@ function displayNumber(value) {
   if (screenValue === '0') {
     screenValue = value;
   } else if (screenValue.length === MAX_DIGIT) {
-    alert('Please use less numbers!');
+    alert('Please use less digits!');
     return;
   } else if (operator && !previousValue) {
     previousValue = parseInt(screenValue);
