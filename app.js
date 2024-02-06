@@ -3,7 +3,7 @@ const buttons = document.querySelector('.calc-buttons');
 let screenValue = '0';
 let operator;
 let previousValue = 0;
-const MAX_DIGIT = 15;
+const MAX_DIGIT = 13;
 
 buttons.addEventListener('click', function (e) {
   buttonClick(e.target.innerText);
@@ -35,7 +35,7 @@ function buttonClick(value) {
         result = result.toString();
         // Result is trimmed if it is bigger than MAX_DIGIT
         if (result.length > MAX_DIGIT) {
-          result = result.slice(0, 15);
+          result = result.slice(0, 13);
         }
 
         screenValue = result;
