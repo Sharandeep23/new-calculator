@@ -5,6 +5,7 @@ let screenValue = '0';
 let operator;
 let previousValue = 0;
 const MAX_DIGIT = 13;
+let isEqualPressed = false;
 
 buttons.addEventListener('click', function (e) {
   buttonClick(e.target.innerText);
@@ -31,6 +32,9 @@ function handleNumber(number) {
   } else if (operator && !previousValue) {
     previousValue = parseInt(screenValue);
     screenValue = number;
+  } else if (isEqualPressed) {
+    screenValue = number;
+    isEqualPressed = false;
   } else {
     screenValue += number;
   }
@@ -50,7 +54,11 @@ function handleSymbol(sym) {
       if (previousValue && operator) {
         evaluate();
       }
-      if (sym !== '=') operator = sym;
+      if (sym === '=') {
+        isEqualPressed = true;
+      } else {
+        operator = sym;
+      }
   }
 }
 
