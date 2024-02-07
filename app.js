@@ -50,7 +50,6 @@ function handleSymbol(sym) {
         evaluate();
       }
       if (sym !== '=') operator = sym;
-      console.log(operator);
   }
 }
 
@@ -68,7 +67,7 @@ function evaluate() {
   let result = calculate(previousValue, operator, parseInt(screenValue));
   // convert num to string
   result = result.toString();
-  // Result is trimmed if it is bigger than MAX_DIGIT
+  // Result is trimmed if it is bigger than the MAX_DIGIT
   if (result.length > MAX_DIGIT) {
     result = result.slice(0, 13);
   }
