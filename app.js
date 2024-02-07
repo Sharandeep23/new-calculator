@@ -44,6 +44,7 @@ function handleSymbol(sym) {
     case '←':
       backspace();
       break;
+    // default case will be applied for '+', '-', '×', '÷' and '='
     default:
       if (screenValue === '0') return;
       if (previousValue && operator) {
