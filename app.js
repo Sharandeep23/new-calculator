@@ -11,6 +11,7 @@ buttons.addEventListener('click', function (e) {
 });
 
 function buttonClick(value) {
+  // For differentiating numbers and symbols click
   if (isNaN(value)) {
     // For symbols
     handleSymbol(value);
@@ -18,6 +19,8 @@ function buttonClick(value) {
     // For numbers
     handleNumber(value);
   }
+  // Rendering to the screen
+  screen.innerText = screenValue;
 }
 
 function handleNumber(number) {
@@ -25,51 +28,53 @@ function handleNumber(number) {
     screenValue = number;
   } else if (screenValue.length === MAX_DIGIT) {
     alert('Please use less digits!');
-    return;
   } else if (operator && !previousValue) {
     previousValue = parseInt(screenValue);
     screenValue = number;
   } else {
     screenValue += number;
   }
-  displayValue(screenValue);
 }
 
-function handleSymbol(symbol) {
-  switch (symbol) {
+function handleSymbol(sym) {
+  switch (sym) {
     case 'C':
       clear();
       break;
     case '←':
       backspace();
       break;
-    case '÷':
-    case '×':
-    case '−':
-    case '+':
-      operator = symbol;
-      break;
-    case '=':
-      let result = calculate(previousValue, operator, parseInt(screenValue));
-      // convert num to string
-      result = result.toString();
-      // Result is trimmed if it is bigger than MAX_DIGIT
-      if (result.length > MAX_DIGIT) {
-        result = result.slice(0, 13);
+    default:
+      if (screenValue === '0') return;
+      if (previousValue && operator) {
+        evaluate();
       }
-
-      screenValue = result;
-      displayValue(screenValue);
-      previousValue = 0;
-      operator = '';
+      if (sym !== '=') operator = sym;
+      console.log(operator);
   }
 }
 
 function clear() {
   screenValue = '0';
+  reset();
+}
+
+function reset() {
   previousValue = 0;
   operator = '';
-  displayValue(screenValue);
+}
+
+function evaluate() {
+  let result = calculate(previousValue, operator, parseInt(screenValue));
+  // convert num to string
+  result = result.toString();
+  // Result is trimmed if it is bigger than MAX_DIGIT
+  if (result.length > MAX_DIGIT) {
+    result = result.slice(0, 13);
+  }
+
+  screenValue = result;
+  reset();
 }
 
 function backspace() {
@@ -78,8 +83,8 @@ function backspace() {
   // For empty strings
   if (screenValue === '') {
     screenValue = '0';
+    reset();
   }
-  displayValue(screenValue);
 }
 
 function calculate(operand1, operator, operand2) {
@@ -96,8 +101,4 @@ function calculate(operand1, operator, operand2) {
     case '+':
       return operand1 + operand2;
   }
-}
-
-function displayValue(value) {
-  screen.innerText = value;
 }
