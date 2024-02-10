@@ -34,6 +34,7 @@ function handleNumber(number) {
     screenValue = number;
   } else if (isEqualPressed) {
     screenValue = number;
+    console.log('I am here');
     isEqualPressed = false;
   } else {
     screenValue += number;
@@ -64,6 +65,7 @@ function handleSymbol(sym) {
 
 function clear() {
   screenValue = '0';
+  isEqualPressed = false;
   reset();
 }
 
