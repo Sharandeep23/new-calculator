@@ -63,19 +63,20 @@ function handleSymbol(sym) {
         isEqualPressed = true;
       } else {
         operator = sym;
+        isEqualPressed = false;
       }
   }
 }
 
 function clear() {
   screenValue = '0';
-  isEqualPressed = false;
   reset();
 }
 
 function reset() {
   previousValue = 0;
   operator = '';
+  isEqualPressed = false;
 }
 
 function evaluate() {
