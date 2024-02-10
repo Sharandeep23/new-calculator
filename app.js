@@ -34,7 +34,6 @@ function handleNumber(number) {
     screenValue = number;
   } else if (isEqualPressed) {
     screenValue = number;
-    console.log('I am here');
     isEqualPressed = false;
   } else {
     screenValue += number;
