@@ -52,6 +52,10 @@ function handleSymbol(sym) {
     // default case will be applied for '+', '-', '×', '÷' and '='
     default:
       if (screenValue === '0') return;
+      // If Operator exists then it should match with sym
+      // e.g. evaluate '5 + 5' and '+', . Not for any other signs except '='
+      if (operator && operator !== sym && sym !== '=') return;
+
       if (previousValue && operator) {
         evaluate();
       }
