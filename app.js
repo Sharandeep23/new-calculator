@@ -86,12 +86,11 @@ function evaluate() {
 }
 
 function backspace() {
-  if (screenValue === '0') return;
-  screenValue = screenValue.slice(0, -1);
-  // For empty strings
-  if (screenValue === '') {
+  if (screenValue.length === 1) {
     screenValue = '0';
     reset();
+  } else {
+    screenValue = screenValue.slice(0, -1);
   }
 }
 
