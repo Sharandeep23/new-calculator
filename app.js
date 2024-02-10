@@ -4,7 +4,7 @@ const buttons = document.querySelector('.calc-buttons');
 let screenValue = '0';
 let operator;
 let previousValue = 0;
-const MAX_DIGIT = 13;
+const MAX_DIGIT = 15;
 let isEqualPressed = false;
 
 buttons.addEventListener('click', function (e) {
