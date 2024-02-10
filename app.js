@@ -55,6 +55,9 @@ function handleSymbol(sym) {
       // e.g. evaluate '5 + 5' and '+', . Not for any other signs except '='
       if (operator && operator !== sym && sym !== '=') return;
 
+      // Filtering Equals
+      if (sym === '=' && !previousValue) return;
+
       if (previousValue && operator) {
         evaluate();
       }
