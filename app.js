@@ -2,11 +2,12 @@ const screen = document.querySelector('.screen');
 const buttons = document.querySelector('.calc-buttons');
 
 let screenValue = '0';
-let operator;
+let operator = '';
 let previousValue = 0;
 const MAX_DIGIT = 15;
 let isEqualPressed = false;
 
+// One Event Listener for all the buttons, leveraging Event Bubbling
 buttons.addEventListener('click', function (e) {
   buttonClick(e.target.innerText);
 });
